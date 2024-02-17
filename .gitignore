@@ -1,0 +1,45 @@
+
+# Ignore build directory
+/build/
+
+# Ignore compiled binaries and libraries
+*.exe
+*.out
+*.o
+*.a
+*.so
+
+# Ignore generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+# Ignore IDE and editor files
+.vscode/
+.idea/
+*.suo
+*.user
+*.sln
+*.suo
+*.ncb
+*.opendb
+*.opensdf
+*.sdf
+
+# Ignore macOS metadata
+.DS_Store
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore log and backup files
+*.log
+*.bak
+
+# Ignore user-specific files
+*.swp
+*~
