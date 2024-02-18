@@ -2,6 +2,8 @@
 #include <string>
 
 class ConfigurationNode {
+
+protected: 
   std::map<char, ConfigurationNode> children; 
   bool hasValue;
 
