@@ -2,6 +2,10 @@
 #include <string>
 
 class ConfigurationNode {
-  std::map<std::string, ConfigurationNode> children; 
+  std::map<char, ConfigurationNode> children; 
   bool hasValue;
+
+public:
+  ConfigurationNode() noexcept;
+  void insert(char key);
 }; 
