@@ -8,6 +8,11 @@ class ConfigurationNodeWithValue : ConfigurationNode {
   ValueType value;
 
 public:
+  
+  ConfigurationNodeWithValue() noexcept{
+    hasValue = true;
+  }
+
   ValueType Get(std::string key);
   
   void insert(char key, ValueType value){
@@ -17,7 +22,7 @@ public:
     }else{
       ConfigurationNodeWithValue<ValueType> newConfigurationNode{};
       newConfigurationNode.value = value;
-      children.insert(std::pair<char, ConfigurationNod>(key, newConfigurationNode));
+      children.insert(std::pair<char, ConfigurationNode>(key, newConfigurationNode));
     }
   }
 };

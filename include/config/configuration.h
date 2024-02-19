@@ -2,19 +2,28 @@
 #include <iostream>
 
 #include "configurationNode.h"
+#include "configurationNodeWithValue.h"
 
 class Configuration {
-
-  std::string configurationName;
-  ConfigurationNode root;
 
 public:
 
   template <typename ValueType>
   void insert(std::string key, ValueType value){
-    std::cout << "calling add key" << std::endl;  
+    if (root == null) {
+      
+    }
+    
+    for (char character : key) {
+      
+    } 
   }
 
   template<typename ValueType>
   ValueType get(std::string key);
+
+private:
+  
+  std::string configurationName;
+  ConfigurationNode root;
 };
