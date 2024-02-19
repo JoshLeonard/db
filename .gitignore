@@ -43,3 +43,5 @@ __pycache__/
 # Ignore user-specific files
 *.swp
 *~
+
+.cache/

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <utility>
 
@@ -20,7 +22,7 @@ public:
     if (it != children.end()){
       
     }else{
-      ConfigurationNodeWithValue<ValueType> newConfigurationNode{};
+      auto newConfigurationNode = std::make_shared<ConfigurationNodeWithValue<ValueType>>();
       newConfigurationNode.value = value;
       children.insert(std::pair<char, ConfigurationNode>(key, newConfigurationNode));
     }

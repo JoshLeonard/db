@@ -1,4 +1,5 @@
 #include "config/configurationNode.h"
+#include <memory>
 
 
 ConfigurationNode::ConfigurationNode() noexcept{
@@ -11,8 +12,7 @@ void ConfigurationNode::insert(char key){
 
   }else{
     // Will move to smart pointers soon, just doing this for speed and testing
-    ConfigurationNode newNode{};
-    
-    children.insert(std::pair<char, ConfigurationNode>(key, newNode));
+    auto newNode = std::make_unique<ConfigurationNode>();
+    children.insert(std::pair<char, std::shared_ptr<ConfigurationNode>>(key, std::move(newNode)));
   }
 }

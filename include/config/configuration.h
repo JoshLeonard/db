@@ -1,3 +1,5 @@
+#include <cstddef>
+#include <memory>
 #include <string>
 #include <iostream>
 
@@ -10,12 +12,12 @@ public:
 
   template <typename ValueType>
   void insert(std::string key, ValueType value){
-    if (root == null) {
+    if (root == NULL) {
       
     }
     
     for (char character : key) {
-      
+  
     } 
   }
 
@@ -25,5 +27,10 @@ public:
 private:
   
   std::string configurationName;
-  ConfigurationNode root;
+  std::shared_ptr<ConfigurationNode> root;
+
+  template <typename ValueType>
+  void insert(std::string key, size_t index, ValueType value) {
+
+  }
 };
