@@ -6,13 +6,18 @@
 #include "configurationNode.h"
 
 template<typename ValueType>
-class ConfigurationNodeWithValue : ConfigurationNode {
+class ConfigurationNodeWithValue : public ConfigurationNode {
   ValueType value;
 
 public:
   
-  ConfigurationNodeWithValue() noexcept{
+  ConfigurationNodeWithValue(ValueType value) noexcept{
     hasValue = true;
+    this->value = value;
+  }
+
+  ConfigurationNodeWithValue(std::map<char, std::shared_ptr<ConfigurationNode>> &&children, ValueType value) : ConfigurationNode(std::move(children)), value{value} {
+    
   }
 
   ValueType Get(std::string key);
@@ -22,9 +27,9 @@ public:
     if (it != children.end()){
       
     }else{
-      auto newConfigurationNode = std::make_shared<ConfigurationNodeWithValue<ValueType>>();
-      newConfigurationNode.value = value;
-      children.insert(std::pair<char, ConfigurationNode>(key, newConfigurationNode));
+
+      auto newConfigurationNode = std::make_shared<ConfigurationNodeWithValue<ValueType>>(value);
+      children.insert(std::pair<char, std::shared_ptr<ConfigurationNode>>(key, newConfigurationNode));
     }
   }
 };

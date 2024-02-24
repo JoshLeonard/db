@@ -5,6 +5,10 @@
 ConfigurationNode::ConfigurationNode() noexcept{
   hasValue = false; 
 }
+
+ConfigurationNode::ConfigurationNode(std::map<char, std::shared_ptr<ConfigurationNode>>&& children) : children(children) {
+
+}
   
 void ConfigurationNode::insert(char key){
   auto it = children.find(key);
