@@ -20,7 +20,11 @@ public:
     
   }
 
-  ValueType Get(std::string key);
+  ~ConfigurationNodeWithValue(){}
+
+  ValueType get() {
+    return this->value;
+  }
   
   void insert(char key, ValueType value){
     auto it = children.find(key);

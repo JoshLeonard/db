@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
 
 include(FetchContent)
 FetchContent_Declare(
@@ -33,3 +34,5 @@ add_executable(dbtests ${TEST_SOURCES})
 target_include_directories(dbtests PRIVATE include)
 target_link_libraries(dbtests gtest_main)
 add_test(NAME dbtests COMMAND dbtests)
+
+target_compile_options(dbtests PRIVATE -fstandalone-debug)

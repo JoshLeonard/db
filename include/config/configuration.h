@@ -31,39 +31,44 @@ public:
       } else {
         if (isValueNode) {
           auto newNode = std::make_shared<ConfigurationNodeWithValue<ValueType>>(std::move(node->children), value);
-        } else {
-          node = it->second;
-        } 
+          node->children[key[index]] = newNode;
+        }
+        node = it->second;
       }
     }
   }
 
   template<typename ValueType>
-  ValueType get(std::string key);
+  ValueType get(std::string key) {    
+    auto node = root;
+    for (size_t index = 0; index < key.length(); index++) {
+      bool isValueNode = index == key.length() - 1 ? true : false;
+      auto it = node->children.find(key[index]);
+      if (it == node->children.end()) {
+        return ValueType();
+      } 
+      else {
+        if (isValueNode) {
+          if (it->second->hasValue) {
+            auto configurationNodeWithValue = std::dynamic_pointer_cast<ConfigurationNodeWithValue<ValueType>>(it->second);
+            if (configurationNodeWithValue == nullptr) {
+              return ValueType();
+            }
+            return configurationNodeWithValue->get();
+          }else {
+            return ValueType();
+          }
+        }
+        else {
+          node = it->second;
+        }
+      }
+    }
+    return ValueType();
+  }
 
 private:
   
   std::string configurationName;
   std::shared_ptr<ConfigurationNode> root;
-
-  template <typename ValueType>
-  void insert(std::string key, size_t key_index, ValueType value) {
-    if (key.length() == key_index) {
-      // doesnt exist and need to add
-    }
-    bool isDestination = key_index == key.length() - 1 ? true : false; 
-    
-    auto it = root->children.find(key[key_index]);
-    if (it != root->children.end()) {
-
-    }else{
-      if (isDestination) {
-        auto newNode = std::make_shared<ConfigurationNodeWithValue<ValueType>>(value);
-        root->children.insert(std::pair(key[key_index], newNode));
-      }else {
-
-      }
-    }
-
-  }
 };

@@ -2,9 +2,12 @@
 
 #include "config/configuration.h"
 
-TEST(configurationTest, CanInstantiate){
+TEST(ConfigurationTest, CanInsert){
   Configuration configuration{};
 
-  configuration.insert("test", 1);
-  
+  configuration.insert<std::string>("test", "test string");
+  auto value = configuration.get<std::string>("test");
+
+  ASSERT_EQ(value, "test string");
 }
+
